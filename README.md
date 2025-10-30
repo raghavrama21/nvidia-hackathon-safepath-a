@@ -95,10 +95,10 @@ streamlit run streamlit_review_app.py
 python review_cli.py chat
 
 # Review a document
-python review_cli.py review ./unapproved_CRLs/document.pdf
+python review_cli.py review ./demo_NDAs/SyntheticNDA_ChatGPT.pdf
 
 # Batch review
-python review_cli.py batch ./unapproved_CRLs/
+python review_cli.py batch ./demo_NDAs/
 
 # Rebuild knowledge base (if needed)
 python review_cli.py build
@@ -115,6 +115,7 @@ python review_cli.py build
 nvidia-hackathon/
 ├── approved_CRLs/          # 202 approved CRL PDFs (knowledge base)
 ├── unapproved_CRLs/        # 89 unapproved CRLs PDFs (knowledge base)
+├── demo_NDAs/              # Testing the agent
 ├── crl_review_agent.py     # Core agent implementation
 ├── streamlit_review_app.py # Web UI (SafePath)
 ├── review_cli.py           # CLI tool for automation
@@ -242,13 +243,13 @@ python review_cli.py chat
 # - "How should clinical data be presented?"
 
 # Review a single document
-python review_cli.py review ./unapproved_CRLs/CRL_BLA125745_20250115.pdf
+python review_cli.py review ./demo_NDAs/SyntheticNDA_ChatGPT.pdf
 
 # Review all documents in a directory
-python review_cli.py batch ./unapproved_CRLs/ --output-dir ./reviews
+python review_cli.py batch ./demo_NDAs/ --output-dir ./reviews
 
 # Use different model
-python review_cli.py review document.pdf --model meta/llama-3.1-70b-instruct
+python review_cli.py review SyntheticNDA_ChatGPT.pdf --model meta/llama-3.1-70b-instruct
 ```
 
 ### Python API
@@ -268,7 +269,7 @@ response = agent.chat("What are common CMC deficiencies in approved CRLs?")
 print(response)
 
 # Review a document (returns structured results)
-result = agent.review_document("./unapproved_CRLs/CRL_BLA125745_20250115.pdf")
+result = agent.review_document("./demo_NDAs/SyntheticNDA_ChatGPT.pdf")
 
 # Access risk score
 print(f"Risk Score: {result['risk_score']['score']}/10")
